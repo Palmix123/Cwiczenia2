@@ -1,27 +1,35 @@
-﻿using ConsoleApp1.Interfaces;
+﻿using ConsoleApp1.Exceptions;
+using ConsoleApp1.Interfaces;
 
-namespace ConsoleApp1;
+namespace ConsoleApp1.Containers;
 
 public abstract class Container : IContainer
 {
-    public double CargoWeight { get; set; }
-    protected Container(double cargoWeight)
-    {
-        CargoWeight = cargoWeight;
-    }
+    protected double _cargoWeight { get; set; }
+    protected double _height { get; }
+    protected double _containerWeight { get; }
+    protected double _depth { get; }
+    protected string _seriesNumber { get; set; }
+    protected double _maxLoad { get; }
 
+    protected Container(double cargoWeight, double height, double containerWeight, double depth, double maxLoad)
+    {
+        _cargoWeight = cargoWeight;
+        _height = height;
+        _containerWeight = containerWeight;
+        _depth = depth;
+        _maxLoad = maxLoad;
+    }
 
     public virtual void Unload()
     {
-        if (CargoWeight > 100)
-        {
-            throw new OverflowException();
-        }
-        throw new NotImplementedException();
+        _cargoWeight = 0;
     }
 
     public virtual void Load(double cargoWeight)
     {
-        throw new NotImplementedException();
+        if (_cargoWeight + cargoWeight > _maxLoad)
+            throw new OverFillException();
+        _cargoWeight += cargoWeight;
     }
 }
