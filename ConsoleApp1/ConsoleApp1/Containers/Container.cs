@@ -20,6 +20,8 @@ public abstract class Container : IContainer
         _depth = depth;
         _maxLoad = maxLoad;
     }
+    
+    
 
     public virtual void Unload()
     {
@@ -31,5 +33,10 @@ public abstract class Container : IContainer
         if (_cargoWeight + cargoWeight > _maxLoad)
             throw new OverFillException();
         _cargoWeight += cargoWeight;
+    }
+
+    public override string ToString()
+    {
+        return "Cargo weight = " + _cargoWeight + "\tMax load = "  + _maxLoad + "\tSeries number = " + _seriesNumber;
     }
 }

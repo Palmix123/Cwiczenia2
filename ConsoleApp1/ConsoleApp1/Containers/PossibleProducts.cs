@@ -2,8 +2,12 @@
 
 public enum PossibleProducts
 {
-    Banana,
+    Bananas,
     Apple,
     Gasoline,
-    Fuel
+    Fuel,
+    Chocolate,
+    Fish,
+    Meat,
+    IceCream
 }
